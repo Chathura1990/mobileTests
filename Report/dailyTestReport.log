@@ -1,0 +1,11 @@
+03-15-19 18:20:28  INFO [main] -- Total time to load the page -> milliseconds: 13859 minutes:0.0 seconds:13.859
+03-15-19 18:20:33  INFO [main] 
+03-15-19 18:20:33  INFO [main] -- Wait element to be clickable: (By.id: log_in_button)
+03-15-19 18:20:33  INFO [main] -- Clicked '[Log in] button' using element: (By.id: log_in_button)
+03-15-19 18:20:34  INFO [main] -- Wait element to be clickable: (By.id: login_username)
+03-15-19 18:20:47  INFO [main] -- Typed: 'chathura_s_r' in the field: (By.id: login_username)
+03-15-19 18:20:51  INFO [main] -- Wait element to be clickable: (By.id: password)
+03-15-19 18:21:01  INFO [main] -- Typed: '1990-04-06c' in the field: (By.id: password)
+03-15-19 18:21:02  INFO [main] -- Wait element to be clickable: (By.id: button_text)
+03-15-19 18:21:02  INFO [main] -- Clicked '[Login] button' using element: (By.id: button_text)
+03-15-19 18:21:06  INFO [main] -- Logged in Successful
