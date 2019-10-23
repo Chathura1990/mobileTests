@@ -10,8 +10,17 @@ public class CalculatorTests extends TestBase {
     @Test(priority = 1)
     public void click_Like_Button() throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println(app.getInsta().clickOnePlusOne());
-        Assert.assertEquals(app.getInsta().clickOnePlusOne(),"2");
-
+        String result = app.getCalc().clickOnePlusOne();
+        System.out.println(result);
+        Assert.assertEquals(result,"2");
     }
+
+    @Priority(2)
+    @Test(priority = 2)
+    public void changeTheme() throws InterruptedException {
+        Thread.sleep(2000);
+        app.getCalc().changeTheme();
+    }
+
+
 }

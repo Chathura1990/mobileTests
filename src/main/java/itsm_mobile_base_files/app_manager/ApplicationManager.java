@@ -27,7 +27,7 @@ public class ApplicationManager {
     public static Logger log = Logger.getLogger("ApplicationManager");
 
     private SelectorService selectorService;
-    private Calculator insta;
+    private Calculator calc;
 
     public void init() throws MalformedURLException, InterruptedException {
         /*
@@ -35,9 +35,9 @@ public class ApplicationManager {
          */
         DesiredCapabilities dc = new DesiredCapabilities();
         dc.setCapability(MobileCapabilityType.AUTOMATION_NAME,"Appium");
-        dc.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8.0");
-        dc.setCapability(MobileCapabilityType.DEVICE_NAME,"Android");
+        dc.setCapability(MobileCapabilityType.PLATFORM_NAME,"ANDROID");
+        dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8.0.0");
+        dc.setCapability(MobileCapabilityType.DEVICE_NAME,"SM-A720F");
         dc.setCapability(MobileCapabilityType.APP,"C:\\Users\\CRajapakse\\Videos\\apk files\\calcu.apk");
 
         URL url = new URL(APPIUM_HUB_URL);
@@ -53,7 +53,7 @@ public class ApplicationManager {
         Thread.sleep(5000);
 
         selectorService = new SelectorService(driver);
-        insta = new Calculator(driver);
+        calc = new Calculator(driver);
     }
 
     public void stop() throws InterruptedException {
@@ -74,5 +74,5 @@ public class ApplicationManager {
 
     public SelectorService getSelectorService(){ return selectorService; }
 
-    public Calculator getInsta(){ return insta; }
+    public Calculator getCalc(){ return calc; }
 }
