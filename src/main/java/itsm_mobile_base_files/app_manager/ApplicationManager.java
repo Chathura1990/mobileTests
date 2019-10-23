@@ -2,6 +2,7 @@ package itsm_mobile_base_files.app_manager;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import itsm_mobile_base_files.app_manager.insta.Calculator;
 import itsm_mobile_base_files.app_manager.selector_helper.SelectorService;
@@ -38,7 +39,14 @@ public class ApplicationManager {
         dc.setCapability(MobileCapabilityType.PLATFORM_NAME,"ANDROID");
         dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8.0.0");
         dc.setCapability(MobileCapabilityType.DEVICE_NAME,"SM-A720F");
-        dc.setCapability(MobileCapabilityType.APP,"C:\\Users\\CRajapakse\\Videos\\apk files\\calcu.apk");
+//        dc.setCapability(MobileCapabilityType.APP,"C:\\Users\\CRajapakse\\Videos\\apk files\\calcu.apk");
+        /*
+         * To get an app package and activity details execute this script in command line. Before that open the desired app on the phone and execute the script.
+         * This is to test an existing app on the mobile.
+         * adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
+         */
+        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"ru.europaplus.radio");
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"ru.radio.box.ui.MainUI");
 
         URL url = new URL(APPIUM_HUB_URL);
 
