@@ -1,5 +1,7 @@
 package itsm_mobile_base_files.app_manager.test_base;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import itsm_mobile_base_files.app_manager.selector_helper.SelectorService;
@@ -21,7 +23,7 @@ public class SessionHelper extends SelectorService {
     private By SubmitButton = id("button_text");
     private By YourStory = id("chathura_s_r's story at column 0");
 
-    public SessionHelper(AndroidDriver driver) {
+    public SessionHelper(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
 

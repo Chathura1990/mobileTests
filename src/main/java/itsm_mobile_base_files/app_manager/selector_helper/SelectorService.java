@@ -1,6 +1,7 @@
 package itsm_mobile_base_files.app_manager.selector_helper;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
@@ -25,18 +26,17 @@ import java.util.concurrent.TimeUnit;
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static io.restassured.RestAssured.when;
-import static itsm_mobile_base_files.app_manager.ApplicationManager.log;
-import static itsm_mobile_base_files.app_manager.ApplicationManager.reportLog;
+import static itsm_mobile_base_files.app_manager.ApplicationManager.*;
 import static itsm_mobile_base_files.framework.global_parameters.GlobalParameters.*;
 import static org.openqa.selenium.By.xpath;
 
 public class SelectorService {
 
-    protected AndroidDriver driver;
+    protected AppiumDriver<MobileElement> driver;
     private WebDriverWait wait;
-    private TouchAction tAction = new TouchAction(driver);
+//    private TouchAction tAction = new TouchAction(Objects.requireNonNull(driver));
 
-    public SelectorService(AndroidDriver driver) {
+    public SelectorService(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 
@@ -77,7 +77,7 @@ public class SelectorService {
     }
 
     public void scroll(int clickXOffset, int clickYOffSet, int duration, int moveToX, int moveToY) throws InterruptedException {
-        tAction.press(point(clickXOffset, clickYOffSet))
+        new TouchAction<>(driver).press(point(clickXOffset, clickYOffSet))
                 .waitAction(waitOptions(Duration.ofMillis(duration)))
                 .moveTo(point(moveToX, moveToY))
                 .release().perform();
@@ -217,7 +217,7 @@ public class SelectorService {
 
     protected void assertNumberOfOptionsInDropdown(By locator, String text, int realAmount){
         reportLog("**** Check "+text+" dropdown in Single Rx *******");
-        List<WebElement> optionList = driver.findElement(locator).findElements(By.tagName("option"));
+        List<MobileElement> optionList = driver.findElement(locator).findElements(By.tagName("option"));
         WebElement element1 = driver.findElement(locator);
         Select select = new Select(element1);
         int numberOfOptions = select.getOptions().size();

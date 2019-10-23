@@ -1,12 +1,11 @@
 package itsm_mobile_base_files.app_manager;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import itsm_mobile_base_files.app_manager.insta.Calculator;
 import itsm_mobile_base_files.app_manager.selector_helper.SelectorService;
-import itsm_mobile_base_files.app_manager.test_base.SessionHelper;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Reporter;
 
@@ -21,13 +20,14 @@ import static itsm_mobile_base_files.framework.global_parameters.GlobalParameter
 
 public class ApplicationManager {
 
-    public static AndroidDriver driver = null;
+    public static AppiumDriver<MobileElement> driver;
 
     private final static boolean DEBUG = true;
     private static final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     public static Logger log = Logger.getLogger("ApplicationManager");
 
     private SelectorService selectorService;
+    private Calculator insta;
 
     public void init() throws MalformedURLException, InterruptedException {
         /*
@@ -36,16 +36,14 @@ public class ApplicationManager {
         DesiredCapabilities dc = new DesiredCapabilities();
         dc.setCapability(MobileCapabilityType.AUTOMATION_NAME,"Appium");
         dc.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8");
+        dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"8.0");
         dc.setCapability(MobileCapabilityType.DEVICE_NAME,"Android");
-//        dc.setCapability(MobileCapabilityType.APP,"C:\\Users\\CRajapakse\\Downloads\\apks\\VodQA.apk");
-        dc.setCapability("appPackage","com.instagram.android");
-        dc.setCapability("appActivity","com.instagram.mainactivity.MainActivity");
+        dc.setCapability(MobileCapabilityType.APP,"C:\\Users\\CRajapakse\\Videos\\apk files\\calcu.apk");
 
         URL url = new URL(APPIUM_HUB_URL);
 
         long start = System.currentTimeMillis();
-        driver = new AndroidDriver<>(url,dc);
+        driver = new AppiumDriver<>(url,dc);
         long finish = System.currentTimeMillis();
 
         long totalTimeInMillis = finish - start;
@@ -55,8 +53,7 @@ public class ApplicationManager {
         Thread.sleep(5000);
 
         selectorService = new SelectorService(driver);
-
-        new SessionHelper(driver).setup_App_And_login();
+        insta = new Calculator(driver);
     }
 
     public void stop() throws InterruptedException {
@@ -76,4 +73,6 @@ public class ApplicationManager {
     }
 
     public SelectorService getSelectorService(){ return selectorService; }
+
+    public Calculator getInsta(){ return insta; }
 }
